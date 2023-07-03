@@ -62,7 +62,7 @@ Simple Network architecture, minimal training (1000 updates): note it is actuall
 
 Really a toy architecture: the idea for the first proper attempt is to implement the CNN and use the configuration file settings for testing variants (aim for the three remaining attempts). Submission 2 with 100000 updates on a really simply architecture only brought marginal improvements on the leader board in terms of the metric, but a lower position because of newer, better submissions (still below identity however) - metric: 33.799
 
-#### heselCNN1 - 3 (test submission 3: CNN architecture)
+#### heselCNN1 - 3 (test submission 3 - 5: CNN architecture)
 
 Just the metrics now, for a basic CNN implementation (see current main.py)
 
