@@ -53,4 +53,9 @@ See requirements.txt
 ![image](https://github.com/heseltime/progr2-img-depixelation/assets/66922223/fab3d824-9a1b-4cac-8bb0-b7e93f2d3ab1)
 
 Simple Network architecture, minimal training: note it is actually worse than the IdentityModel (uses input as prediction, i.e., it does
-not perform any actual computation). There's some room for improvement.
+not perform any actual computation). There's some room for improvement: estimated points for the project is 0 (see Scoring Scheme).
+
+
+### Scoring Scheme
+
+The reference BasicCNNModel is a model implementing 5 layers with 32 kernels of size 3. If the submission model’s RMSE is equal to or higher than IdentityModel, the scoring for the project is 0 points. If the model’s RMSE is equal to BasicCNNModel, it is 200 points. Everything in between the two models is linearly interpolated, with bonus points for better than the reference model. 
