@@ -6,12 +6,12 @@ This project is an example ML project developed for the Johannes Kepler Universi
 
 ### Example usage
 
-Training
+#### Training
 ```
 python main.py .\working_config.json
 ```
 
-Inference
+#### Inference
 ```
 python predict.py
 ```
@@ -54,16 +54,22 @@ See requirements.txt
 
 ![image](https://github.com/heseltime/progr2-img-depixelation/assets/66922223/fab3d824-9a1b-4cac-8bb0-b7e93f2d3ab1)
 
-Simple Network architecture, minimal training (1000 updates): note it is actually worse than the IdentityModel (uses input as prediction, i.e., it does not perform any actual computation). There's some room for improvement: estimated points for the project is 0 (see Scoring Scheme).
+Simple Network architecture, minimal training (1000 updates): note it is actually worse than the IdentityModel (uses input as prediction, i.e., it does not perform any actual computation). There's some room for improvement: estimated points for the project is 0 (see Scoring Scheme) - metric: 36.291  
 
 #### heseltest0.1 (test submission 2: more training, same architecture as before)
 
-Really a toy architecture: the idea for the first proper attempt is to implement the CNN and use the configuration file settings for testing variants (aim for the three remaining attempts). Submission 2 with 100000 updates on a really simply architecture only brought marginal improvements on the leader board (still below identity).
+Really a toy architecture: the idea for the first proper attempt is to implement the CNN and use the configuration file settings for testing variants (aim for the three remaining attempts). Submission 2 with 100000 updates on a really simply architecture only brought marginal improvements on the leader board (still below identity) - metric: 33.799
 
-#### heselCNN1 (test submission 3: CNN architecture)
+#### heselCNN1 - 3 (test submission 3: CNN architecture)
 
+Just the metrics now, for a basic CNN implementation (see current main.py)
 
+heselCNN1:
+heselCNN2:
+heselCNN3: 
 
-### Scoring Scheme
+For this Project I will stop here, the next step would have been to experiment with modern architectures.
+
+### More on the Scoring Scheme
 
 The reference BasicCNNModel is a model implementing 5 layers with 32 kernels of size 3. If the submission model’s RMSE is equal to or higher than IdentityModel, the scoring for the project is 0 points. If the model’s RMSE is equal to BasicCNNModel, it is 200 points. Everything in between the two models is linearly interpolated, with bonus points for better than the reference model. 
