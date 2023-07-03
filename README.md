@@ -1,35 +1,52 @@
 # Example ML project
-This project is an example ML project and contains a simple CNN that is trained to rotate an input image.
-The input images used are CIFAR10 images, which have been converted to grayscale and are rotated to obtain the targets.
-
-In this first section, you would put general information on the project, references and an author list (if applicable).
+This project is an example ML project developed for the Johannes Kepler University Python Programming 2 course (AI Bachelors/Masters-requirement). The model is used to particpate in the annual machine learning challenge posted by the Institute of Machine Learning.
 
 ### Example usage
-It helps, especially for people new to ML, to include various example usage scenarios and an installation guide of your project (if applicable).
 
-In our case, the simple usage is:
+Training
 ```
-python main.py working_config.json
+python main.py .\working_config.json
+```
+
+Inference
+```
+python predict.py
 ```
 
 ### Structure
-Having a tree with the files and folders is nice to get an overview.
-However, this is sometimes tedious to maintain and omitted.
 ```
-example_project
+progr2-img-depixelation
 |- architectures.py
-|    Classes and functions for network architectures
-|- datasets.py
-|    Dataset classes and dataset helper functions
+|- assignments folder
+|   contains all the assignment functions and datastructures developed over the semester (without assignment sheets)
+|- doc folder
+|   additional images and other materials for documentation
+|- example-project-past-yr folder
+|   project template from last year (I took the course then but dropped it about halfway through the semester)
 |- main.py
-|    Main file. In this case also includes training and evaluation routines.
-|- README.md
-|    A readme file containing info on project, example usage, authors, publication references, and dependencies.
+|    Main file implementing training loop and evaluation
+|- predict.py
+|   Produces the submission.pkl using ...
+|- submission_serialization.py
+|   Given in the course, deserializes ...
+|- test_set.pkl
+|- results folder
+|   Saves the output from main.py, mainly scores as .txt and the .pt model file
 |- utils.py
-|    Utility functions and classes. In this case contains a plotting function.
+|    Utility functions and classes
 |- working_config.json
-|     An example configuration file. Can also be done via command line arguments to main.py.
+|    last configuration used 
+|    (see also alternative configurations: past_config_*.json where * is some feature of the training)
+|+ requirements.txt
 ```
 
 ### Dependencies
-Dependencies are usually given as a list of packages + version numbers or as conda environments.
+See requirements.txt
+
+### Results
+
+#### Test submission 0: heseltest0 (hey, not last on the leaderboard!)
+
+
+
+Simple Network architecture, minimal training.
