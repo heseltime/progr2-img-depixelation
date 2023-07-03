@@ -1,0 +1,4 @@
+Scores:
+  training loss: 33648.211470592054
+validation loss: 34388.330484563456
+      test loss: 34149.297581957515

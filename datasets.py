@@ -54,6 +54,8 @@ class RotatedImages(Dataset):
         return len(self.dataset)
     
     def __getitem__(self, idx):
+        print(self.dataset[idx])
+        print(len(self.dataset[idx]))
         image_data, idx = self.dataset[idx]
         image_data = TF.to_pil_image(image_data)
         if self.transform_chain is not None:

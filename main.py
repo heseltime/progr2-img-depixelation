@@ -19,9 +19,11 @@ import torchvision.transforms as transforms
 from torch.utils.tensorboard import SummaryWriter
 from tqdm import tqdm
 
-from architectures import SimpleCNN
+from architectures import SimpleCNN, SimpleNetwork
 from datasets import CIFAR10, RotatedImages
 from utils import plot
+
+from assignments.a3_ex1 import RandomImagePixelationDataset
 
 
 def evaluate_model(model: torch.nn.Module, dataloader: torch.utils.data.DataLoader, loss_fn, device: torch.device):
@@ -34,9 +36,18 @@ def evaluate_model(model: torch.nn.Module, dataloader: torch.utils.data.DataLoad
         # Loop over all samples in `dataloader`
         for data in tqdm(dataloader, desc="scoring", position=0):
             # Get a sample and move inputs and targets to device
-            inputs, targets, file_names = data
+            #inputs, targets, file_names = data
+            inputs, knowns, targets, path = data 
+
             inputs = inputs.to(device)
+
+            inputs = inputs.float()
+            inputs = inputs.flatten(start_dim=1)
+
             targets = targets.to(device)
+
+            targets = targets.float()
+            targets = targets.flatten(start_dim=1)
             
             # Get outputs of the specified model
             outputs = model(inputs)
@@ -67,43 +78,51 @@ def main(results_path, network_config: dict, learningrate: int = 1e-3, weight_de
     os.makedirs(plotpath, exist_ok=True)
     
     # Load or download CIFAR10 dataset
-    cifar10_dataset = CIFAR10(data_folder="cifar10")
+    #cifar10_dataset = CIFAR10(data_folder="cifar10")
+    dataset = ds = RandomImagePixelationDataset( # resize/centercrop step?
+        os.getcwd() + "\\training\\training", 
+        width_range=(4, 32),
+        height_range=(4, 32),
+        size_range=(4, 16)
+    )
     
     # Split dataset into training, validation and test set (CIFAR10 dataset
     # is already randomized, so we do not necessarily have to shuffle again)
     trainingset = torch.utils.data.Subset(
-        cifar10_dataset,
-        indices=np.arange(int(len(cifar10_dataset) * (3 / 5))))
+        dataset,
+        indices=np.arange(int(len(dataset) * (3 / 5))))
     
     validationset = torch.utils.data.Subset(
-        cifar10_dataset,
-        indices=np.arange(int(len(cifar10_dataset) * (3 / 5)), int(len(cifar10_dataset) * (4 / 5))))
+        dataset,
+        indices=np.arange(int(len(dataset) * (3 / 5)), int(len(dataset) * (4 / 5))))
     
     testset = torch.utils.data.Subset(
-        cifar10_dataset,
-        indices=np.arange(int(len(cifar10_dataset) * (4 / 5)), len(cifar10_dataset)))
+        dataset,
+        indices=np.arange(int(len(dataset) * (4 / 5)), len(dataset)))
+    
 
     # Create datasets and dataloaders with rotated targets without augmentation (for evaluation)
-    trainingset_eval = RotatedImages(dataset=trainingset, rotation_angle=45)
-    validationset = RotatedImages(dataset=validationset, rotation_angle=45)
-    testset = RotatedImages(dataset=testset, rotation_angle=45)
+    #trainingset_eval = RotatedImages(dataset=trainingset, rotation_angle=45)
+    #validationset = RotatedImages(dataset=validationset, rotation_angle=45)
+    #testset = RotatedImages(dataset=testset, rotation_angle=45)
 
-    trainloader = torch.utils.data.DataLoader(trainingset_eval, batch_size=1, shuffle=False, num_workers=0)
+    trainloader = torch.utils.data.DataLoader(trainingset, batch_size=1, shuffle=False, num_workers=0)
     valloader = torch.utils.data.DataLoader(validationset, batch_size=1, shuffle=False, num_workers=0)
     testloader = torch.utils.data.DataLoader(testset, batch_size=1, shuffle=False, num_workers=0)
     
     # Create datasets and dataloaders with rotated targets with augmentation (for training)
-    trainingset_augmented = RotatedImages(dataset=trainingset, rotation_angle=45,
-                                          transform_chain=transforms.Compose([transforms.RandomHorizontalFlip(),
-                                                                              transforms.RandomVerticalFlip()]))
-    trainloader_augmented = torch.utils.data.DataLoader(trainingset_augmented, batch_size=16, shuffle=True,
-                                                        num_workers=0)
+    #trainingset_augmented = RotatedImages(dataset=trainingset, rotation_angle=45,
+    #                                      transform_chain=transforms.Compose([transforms.RandomHorizontalFlip(),
+    #                                                                          transforms.RandomVerticalFlip()]))
+    #trainloader_augmented = torch.utils.data.DataLoader(trainingset_augmented, batch_size=16, shuffle=True,
+    #                                                    num_workers=0)
     
     # Define a tensorboard summary writer that writes to directory "results_path/tensorboard"
     writer = SummaryWriter(log_dir=os.path.join(results_path, "tensorboard"))
     
     # Create Network
-    net = SimpleCNN(**network_config)
+    #net = SimpleCNN(**network_config)
+    net = SimpleNetwork(4096,128,4096)
     net.to(device)
     
     # Get mse loss function
@@ -125,11 +144,29 @@ def main(results_path, network_config: dict, learningrate: int = 1e-3, weight_de
     
     # Train until n_updates updates have been reached
     while update < n_updates:
-        for data in trainloader_augmented:
+        for data in trainloader:
             # Get next samples
-            inputs, targets, ids = data
+            inputs, knowns, targets, path = data 
             inputs = inputs.to(device)
+            inputs = inputs.float()
+            inputs = inputs.flatten(start_dim=1)
+
+            #inputs = torch.randn(1,1,64,64).float() 
+            #inputs = inputs[knowns == 1]
+
+            #print(path)
+
+            #print("new inputs shape")
+            #print(inputs.shape)
+
+            #targets = targets[knowns == 1]
+
             targets = targets.to(device)
+            targets = targets.float()
+            targets = targets.flatten(start_dim=1)
+
+            #print("target size")
+            #print(targets.shape)
             
             # Reset gradients
             optimizer.zero_grad()
