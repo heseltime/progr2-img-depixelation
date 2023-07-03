@@ -58,7 +58,7 @@ Simple Network architecture, minimal training (1000 updates): note it is actuall
 
 #### heseltest0.1 (test submission 2: more training, same architecture as before)
 
-
+![image]()
 
 Really a toy architecture: the idea for the first proper attempt is to implement the CNN and use the configuration file settings for testing variants (aim for the three remaining attempts).
 
