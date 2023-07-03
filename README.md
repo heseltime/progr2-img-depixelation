@@ -47,6 +47,6 @@ See requirements.txt
 
 #### Test submission 0: heseltest0 (hey, not last on the leaderboard!)
 
-
+![image](https://github.com/heseltime/progr2-img-depixelation/assets/66922223/fab3d824-9a1b-4cac-8bb0-b7e93f2d3ab1)
 
 Simple Network architecture, minimal training.
