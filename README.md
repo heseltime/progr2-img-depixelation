@@ -28,6 +28,8 @@ progr2-img-depixelation
 |   project template from last year (I took the course then but dropped it about halfway through the semester)
 |- main.py
 |    Main file implementing training loop and evaluation
+|- past_main.py (past_*)
+|   Initital tests, mainly implementing a simple linear Neural Network architecture, before doing the CNN.
 |- predict.py
 |   Produces the submission.pkl using ...
 |- submission_serialization.py
@@ -48,12 +50,19 @@ See requirements.txt
 
 ### Results
 
-#### Test submission 0: heseltest0 (hey, not last on the leaderboard!)
+#### heseltest0 (test submission 1 with simple Network architecture: hey, not last on the leaderboard!)
 
 ![image](https://github.com/heseltime/progr2-img-depixelation/assets/66922223/fab3d824-9a1b-4cac-8bb0-b7e93f2d3ab1)
 
-Simple Network architecture, minimal training: note it is actually worse than the IdentityModel (uses input as prediction, i.e., it does
-not perform any actual computation). There's some room for improvement: estimated points for the project is 0 (see Scoring Scheme).
+Simple Network architecture, minimal training (1000 updates): note it is actually worse than the IdentityModel (uses input as prediction, i.e., it does not perform any actual computation). There's some room for improvement: estimated points for the project is 0 (see Scoring Scheme).
+
+#### heseltest0.1 (test submission 2: more training, same architecture as before)
+
+
+Really a toy architecture: the idea for the first proper attempt is to implement the CNN and use the configuration file settings for testing variants (aim for the three remaining attempts).
+
+#### heselCNN1 (test submission 3: CNN architecture)
+
 
 
 ### Scoring Scheme

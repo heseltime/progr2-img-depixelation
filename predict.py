@@ -7,7 +7,7 @@ Date -- June 2023
 
 ###############################################################################
 
-Prediction for test input: to be serialized and submiteed to the challenge server.
+Prediction for test input: to be serialized and submitted to the challenge server. Uses best_model.pt from training, has to be in folder "results".
 """
 
 import os
@@ -28,7 +28,7 @@ from assignments.a3_ex1 import RandomImagePixelationDataset
 from submission_serialization import serialize, deserialize
 import pickle, dill
 
-def main():
+def predict():
     #device = torch.device('cpu' if torch.cuda.is_available() else 'gpu')
     device = torch.device('cpu')
 
@@ -90,4 +90,4 @@ def main():
     serialize(submission, 'submission.pkl')
 
 if __name__ == "__main__":
-    main()
+    predict()

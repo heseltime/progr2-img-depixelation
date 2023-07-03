@@ -1,0 +1,15 @@
+{
+  "results_path": "results",
+  "device": "cpu",
+  "learningrate": 1e-3,
+  "weight_decay": 1e-5,
+  "n_updates": 1000,
+  "network_config": {
+    "input_channels": 1,
+    "hidden_channels": 32,
+    "num_hidden_layers": 3,
+    "use_batchnormalization": true,
+    "num_classes": 10,
+    "kernel_size": 7
+  }
+}

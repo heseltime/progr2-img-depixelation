@@ -25,6 +25,8 @@ from utils import plot
 
 from assignments.a3_ex1 import RandomImagePixelationDataset
 
+from predict import predict
+
 
 def evaluate_model(model: torch.nn.Module, dataloader: torch.utils.data.DataLoader, loss_fn, device: torch.device):
     """Function for evaluation of a model `model` on the data in `dataloader` on device `device`,
@@ -184,10 +186,11 @@ def main(results_path, network_config: dict, learningrate: int = 1e-3, weight_de
                 writer.add_scalar(tag="training/loss", scalar_value=loss.cpu(), global_step=update)
             
             # Plot output
-            if (update + 1) % plot_at == 0:
-                plot(inputs.detach().cpu().numpy(), targets.detach().cpu().numpy(), outputs.detach().cpu().numpy(),
-                     plotpath, update)
-            
+            #if (update + 1) % plot_at == 0:
+            #    plot(inputs.detach().cpu().numpy(), targets.detach().cpu().numpy(), outputs.detach().cpu().numpy(),
+            #         plotpath, update)
+            # gives error currently
+
             # Evaluate model on validation set
             if (update + 1) % validate_at == 0:
                 val_loss = evaluate_model(net, dataloader=valloader, loss_fn=mse, device=device)
@@ -234,6 +237,9 @@ def main(results_path, network_config: dict, learningrate: int = 1e-3, weight_de
         print(f"  training loss: {train_loss}", file=rf)
         print(f"validation loss: {val_loss}", file=rf)
         print(f"      test loss: {test_loss}", file=rf)
+
+    # Make prediction using the saved model
+    predict() # saved to submission.pkl
 
 
 if __name__ == "__main__":
