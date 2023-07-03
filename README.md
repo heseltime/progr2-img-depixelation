@@ -58,6 +58,8 @@ Simple Network architecture, minimal training (1000 updates): note it is actuall
 
 #### heseltest0.1 (test submission 2: more training, same architecture as before)
 
+![image](https://github.com/heseltime/progr2-img-depixelation/assets/66922223/de016c50-23a3-44e9-a931-a3774d1203f3)
+
 Really a toy architecture: the idea for the first proper attempt is to implement the CNN and use the configuration file settings for testing variants (aim for the three remaining attempts). Submission 2 with 100000 updates on a really simply architecture only brought marginal improvements on the leader board (still below identity) - metric: 33.799
 
 #### heselCNN1 - 3 (test submission 3: CNN architecture)
