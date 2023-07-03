@@ -1,4 +1,7 @@
-# Example ML project
+# Progr2 ML project: Image Depixelation Challenge
+
+![image](https://github.com/heseltime/progr2-img-depixelation/assets/66922223/b77b053e-d32e-4b5f-bc86-64042590cbec)
+
 This project is an example ML project developed for the Johannes Kepler University Python Programming 2 course (AI Bachelors/Masters-requirement). The model is used to particpate in the annual machine learning challenge posted by the Institute of Machine Learning.
 
 ### Example usage
