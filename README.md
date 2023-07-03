@@ -49,4 +49,5 @@ See requirements.txt
 
 ![image](https://github.com/heseltime/progr2-img-depixelation/assets/66922223/fab3d824-9a1b-4cac-8bb0-b7e93f2d3ab1)
 
-Simple Network architecture, minimal training.
+Simple Network architecture, minimal training: note it is actually worse than the IdentityModel (uses input as prediction, i.e., it does
+not perform any actual computation). There's some room for improvement.
