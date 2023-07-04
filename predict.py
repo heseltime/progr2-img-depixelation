@@ -29,6 +29,7 @@ from submission_serialization import serialize, deserialize
 import pickle, dill
 
 def predict():
+    print("Prediction started...")
     #device = torch.device('cpu' if torch.cuda.is_available() else 'gpu')
     device = torch.device('cpu')
 
@@ -60,8 +61,8 @@ def predict():
     # print(known_arrays[0].shape) # (1,64,64)
     # print(pixelated_images[0].shape) # (1,64,64)
 
-    pixelated_images = [im.flatten() for im in pixelated_images]
-    known_arrays = [im.flatten() for im in known_arrays]
+    #pixelated_images = [im.flatten() for im in pixelated_images]
+    #known_arrays = [im.flatten() for im in known_arrays]
 
     inputs = torch.tensor(pixelated_images, dtype=torch.float32)
 
@@ -76,11 +77,16 @@ def predict():
     # Process predictions
     pred = pred.detach().cpu().numpy() # remove from computational graph to cpu and as numpy
 
-    print(pred.shape) # (6635, 4096)
-    #print(pred)
+    #pred = [im.flatten() for im in pred]
+    print("pred shape")
+    print(pred[0].shape)
+
+    print("known_arrays shape")
+    print(known_arrays[0].shape)
 
     # submit just the predictions for the unknowns, convert to np.uint8 as we go
     submission = [np.array(im[kn == 0], dtype=np.uint8) for im, kn in zip(pred, known_arrays)]
+    submission = [im.flatten() for im in submission]
 
     #print(len(submission)) # 6635
     #print(len(submission[0])) # 532 (example 1)

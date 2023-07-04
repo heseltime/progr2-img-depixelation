@@ -5,11 +5,9 @@
   "weight_decay": 1e-5,
   "n_updates": 100000,
   "network_config": {
-    "input_channels": 1,
-    "hidden_channels": 32,
-    "num_hidden_layers": 3,
-    "use_batchnormalization": true,
-    "num_classes": 10,
+    "n_hidden_layers": 5,
+    "n_in_channels": 1,
+    "n_kernels": 32,
     "kernel_size": 7
   }
 }

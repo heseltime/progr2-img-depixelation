@@ -62,16 +62,20 @@ Simple Network architecture, minimal training (1000 updates): note it is actuall
 
 Really a toy architecture: the idea for the first proper attempt is to implement the CNN and use the configuration file settings for testing variants (aim for the three remaining attempts). Submission 2 with 100000 updates on a really simply architecture only brought marginal improvements on the leader board in terms of the metric, but a lower position because of newer, better submissions (still below identity however) - metric: 33.799
 
-#### heselCNN1 - 3 (test submission 3 - 5: CNN architecture)
+#### heselCNN1 - 2/3 (test submission 3 - 4/5: CNN architecture)
 
 Just the metrics now, for a basic CNN implementation (see current main.py)
 
-heselCNN1 metric:
-heselCNN2 metric:
-heselCNN3 metric: 
+heselCNN1 metric: 21.891 (beats Identity (23.163): Still off from BasicCNN (17.892) however - 10000 update steps)
+heselCNN2 metric: 25.768 (looks like classic overfitting, so more complex model worse thans simpler model) - 100000 update steps: took a work day to train on my laptop.
+heselCNN3 metric: skipped for now, I want to keep this submission option open. (heselCNN2 final for now.)
 
-For this Project I will stop here, the next step would have been to experiment with modern architectures.
+So this is a model that solves this semster-long project in an ok, but not great, manner, using a basic Convolutional Neural Net.
+
+### Next Steps/Critique
+
+For this Project I will stop here: there is of course room for improvement in terms of complexity. The next step would have been to experiment with modern/advanced architectures. On the data side, one core idea would be to augment data to increase the training capability significantly.
 
 ### More on the Scoring Scheme
 
-The reference BasicCNNModel is a model implementing 5 layers with 32 kernels of size 3. If the submission model’s RMSE is equal to or higher than IdentityModel, the scoring for the project is 0 points. If the model’s RMSE is equal to BasicCNNModel, it is 200 points. Everything in between the two models is linearly interpolated, with bonus points for better than the reference model. 
+The reference BasicCNNModel is a model implementing 5 layers with 32 kernels of size 3. If the submission model’s RMSE is equal to the IdentityModel, the scoring for the project is 0 points. If the model’s RMSE is equal to BasicCNNModel, it is 200 points. Everything in between the two models is linearly interpolated, with bonus points for better than the reference model. 

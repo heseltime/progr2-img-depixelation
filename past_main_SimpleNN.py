@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""project/architectures.py
+"""project/main.py
 
 Author -- Jack Heseltine
 Contact -- jack.heseltine@gmail.com
